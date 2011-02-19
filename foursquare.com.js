@@ -1,0 +1,1 @@
+setTimeout("$('div.mainColumn input[type=text]:first').focus()", 500);
