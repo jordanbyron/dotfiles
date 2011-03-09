@@ -1,0 +1,13 @@
+# University-Web
+
+before { run "cd ~/code/rmu/university-web" }
+
+run "mate ."
+
+tab "server" do
+  run "script/rails s"
+end
+
+tab "console" do
+  run "script/rails c"
+end
