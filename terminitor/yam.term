@@ -3,6 +3,7 @@
 before { run "cd ~/code/madriska/yale/yam" }
 
 run "open doc/YAM-Walkthrough-Sept17.pdf"
+run "open /Applications/Tomato.app"
 run "mate ."
 
 tab "server" do
