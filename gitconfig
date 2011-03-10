@@ -1,0 +1,14 @@
+[user]
+	name = Jordan Byron
+	email = jordan@ducksoupsoftware.com
+[core]
+	excludesfile = /Users/byron/.gitignore
+	editor = mate -w
+[color]
+	status = auto
+	branch = auto
+	interactive = auto
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
