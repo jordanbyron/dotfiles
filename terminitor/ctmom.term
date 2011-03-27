@@ -1,0 +1,14 @@
+# CT's Mission of Mercy Fork
+
+before { run "cd ~/code/personal/ct_mission_of_mercy" }
+
+run "git pull upstream master"
+run "mate ."
+
+tab "server" do
+  run "script/rails s"
+end
+
+tab "console" do
+  run "script/rails c"
+end

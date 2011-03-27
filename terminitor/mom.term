@@ -1,0 +1,13 @@
+# Mission of Mercy
+
+before { run "cd ~/code/personal/mission_of_mercy" }
+
+run "mate ."
+
+tab "server" do
+  run "script/rails s"
+end
+
+tab "console" do
+  run "script/rails c"
+end
