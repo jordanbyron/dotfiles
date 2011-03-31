@@ -3,6 +3,7 @@
 before { run "cd ~/code/personal/mission_of_mercy" }
 
 run "mate ."
+run "rake test"
 
 tab "server" do
   run "script/rails s"
