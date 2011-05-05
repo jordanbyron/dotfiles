@@ -1,0 +1,14 @@
+# PuzzleNode
+
+before { run "cd ~/code/rmu/puzzlenode" }
+
+run "mate ."
+run "rake test"
+
+tab "server" do
+  run "script/rails s"
+end
+
+tab "console" do
+  run "script/rails c"
+end
