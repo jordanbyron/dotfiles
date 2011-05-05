@@ -3,6 +3,7 @@
 before { run "cd ~/code/rmu/university-web" }
 
 run "mate ."
+run "rake test"
 
 tab "server" do
   run "script/rails s"
