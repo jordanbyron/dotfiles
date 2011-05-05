@@ -1,1 +1,1 @@
-setTimeout("$('div.mainColumn input[type=text]:first').focus()", 500);
+$('#username').focus();
