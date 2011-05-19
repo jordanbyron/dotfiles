@@ -58,4 +58,6 @@ export CLIENT_MIN_MESSAGES=0
 
 export RUBYLIB="/usr/local/lib:$RUBYLIB"
 
+export NODE_PATH="/usr/local/lib/node:$NODE_PATH"
+
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
