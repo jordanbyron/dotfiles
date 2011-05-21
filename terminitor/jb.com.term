@@ -1,0 +1,9 @@
+# jordanbyron.com
+
+before { run 'cd code/personal/jordanbyron.com' }
+
+run 'mate .'
+
+tab 'server' do
+  run 'mm-server'
+end
