@@ -3,7 +3,10 @@
 before { run "cd ~/code/rmu/puzzlenode" }
 
 run "mate ."
-run "rake test"
+
+tab "test" do
+  run "rake test"
+end
 
 tab "server" do
   run "script/rails s"

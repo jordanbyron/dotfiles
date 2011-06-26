@@ -1,0 +1,10 @@
+# Naugatuck Marching Band
+
+before { run "cd ~/code/personal/nhs" }
+
+run "mate ."
+run "open 'http://localhost:4567'"
+
+tab "server" do
+  run "mm-server"
+end
