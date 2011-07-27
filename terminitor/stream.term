@@ -1,11 +1,11 @@
-# University-Web
+# Mendicant Stream
 
-before { run "cd ~/code/rmu/university-web" }
+before { run "cd ~/code/rmu/stream" }
 
 run "mate ."
 
 tab "test" do
-  run "bundle exec rake test"
+  run "rake test"
 end
 
 tab "server" do
@@ -14,4 +14,8 @@ end
 
 tab "console" do
   run "script/rails c"
+end
+
+tab "compass" do
+  run "compass watch"
 end
