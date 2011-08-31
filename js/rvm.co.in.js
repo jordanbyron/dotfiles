@@ -1,0 +1,1 @@
+$('table:first').html("<tr><td><img src='http://i.imgur.com/GW1ZF.jpg'></td></tr>")
