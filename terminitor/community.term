@@ -1,0 +1,17 @@
+# University-Web
+
+before { run "cd ~/code/rmu/community" }
+
+run "mate ."
+
+tab "test" do
+  run "bundle exec rake test"
+end
+
+tab "server" do
+  run "script/rails s"
+end
+
+tab "console" do
+  run "script/rails c"
+end

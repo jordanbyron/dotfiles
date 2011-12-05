@@ -4,6 +4,8 @@
 [core]
 	excludesfile = /Users/byron/.gitignore
 	editor = mate -w
+	autocrlf = input
+	safecrlf = true
 [color]
 	status = auto
 	branch = auto

@@ -1,0 +1,30 @@
+# Task Master
+
+before { run "cd ~/code/madriska/btree/task-master" }
+
+run "open /Applications/Tomato.app"
+run "mate ."
+
+tab "ssh tunnel" do
+  run "taskmaster_connect"
+end
+
+tab "redis" do
+  run "redis-server"
+end
+
+tab "nhdg_scripts queue" do
+  run "cd example; QUEUE=\"nhdg_scripts\" rake resque:work"
+end
+
+tab "task_master_results queue" do
+  run "QUEUE=\"task_master_results\" rake environment resque:work"
+end
+
+tab "server" do
+  run "script/server"
+end
+
+tab "console" do
+  run "script/console"
+end

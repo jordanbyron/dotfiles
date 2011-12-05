@@ -1,0 +1,22 @@
+# EA Reporting
+
+before { run "cd ~/code/madriska/ea/ordering" }
+
+run "open /Applications/Tomato.app"
+run "mate ."
+
+tab "test" do
+  run "rake test"
+end
+
+tab "redis" do
+  run "redis-server"
+end
+
+tab "server" do
+  run "script/rails server"
+end
+
+tab "console" do
+  run "script/rails console"
+end

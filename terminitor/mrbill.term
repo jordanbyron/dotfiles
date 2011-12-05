@@ -1,0 +1,14 @@
+# Mr. Bill
+
+before { run "cd ~/code/madriska/btree/billing" }
+
+run "open /Applications/Tomato.app"
+run "mate ."
+
+tab "ssh tunnel" do
+  run "okra_connect"
+end
+
+tab "console" do
+  run "bin/console"
+end
