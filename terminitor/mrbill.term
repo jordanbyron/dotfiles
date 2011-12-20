@@ -9,6 +9,10 @@ tab "ssh tunnel" do
   run "okra_connect"
 end
 
+tab "test" do
+  run "bin/rake test"
+end
+
 tab "console" do
   run "bin/console"
 end

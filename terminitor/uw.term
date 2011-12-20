@@ -1,6 +1,6 @@
 # University-Web
 
-before { run "cd ~/code/rmu/university-web" }
+before { run "cd ~/code/mendicant/university-web" }
 
 run "mate ."
 

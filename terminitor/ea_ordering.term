@@ -4,13 +4,27 @@ before { run "cd ~/code/madriska/ea/ordering" }
 
 run "open /Applications/Tomato.app"
 run "mate ."
+run "sleep 6; script/order_worker start"
 
 tab "test" do
   run "rake test"
 end
 
-tab "redis" do
+tab "local redis" do
   run "redis-server"
+end
+
+tab "remote warehouse" do
+  run "ea_datawarehouse_connect"
+end
+
+tab "remote redis" do
+  run "ea_redis_connect"
+end
+
+tab "hierarchy manager" do
+  run "cd ../hierarchy_manager"
+  run "script/server -p 4000"
 end
 
 tab "server" do
