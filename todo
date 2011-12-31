@@ -1,0 +1,3 @@
+export TODO=~/Dropbox/Documents/todo
+function todo() { if [ $# == "0" ]; then cat $TODO; else echo "• $@" >> $TODO; fi }
+function todone() { sed -i -e "/$*/d" $TODO; }

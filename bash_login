@@ -3,6 +3,7 @@ export PATH="~/bin:$PATH"
 export EDITOR="mate -w"
 
 source ~/.api_keys
+source ~/.todo
 
 # Colors from http://wiki.archlinux.org/index.php/Color_Bash_Prompt
 # Misc
