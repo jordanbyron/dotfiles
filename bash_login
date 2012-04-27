@@ -1,6 +1,6 @@
 export PATH="~/bin:$PATH"
 
-export EDITOR="mate -w"
+export EDITOR="mate"
 
 source ~/.api_keys
 source ~/.todo
@@ -47,13 +47,33 @@ BWHITE='\e[47m'
 LIGHTGRAY='\033[0;37m'
 DARKGRAY='\033[1;30m'
 
-export PS1="\u:\W \[$LIGHTGRAY\]\$(vcprompt)\[$NO_COLOR\]\$ "
+export PS1="\[\033[G\]\u:\W \[$LIGHTGRAY\]\$(vcprompt)\[$NO_COLOR\]\$ "
 export PS2='> '
 
 alias synergy="/Applications/synergy-1.3.1/synergyc --name MacBookPro iMac.local"
 alias kill_synergy="killall synergyc"
 
 alias server='open http://localhost:8000 && python -m SimpleHTTPServer'
+
+alias git=hub
+
+kill_whitespace(){
+  find . -not -path '.git' -iname '*.rb' -type f -print0 | xargs -0 sed -i '' -E "s/[[:space:]]*$//"
+}
+
+merger(){
+  branch_name=$(git symbolic-ref -q HEAD)
+  branch_name=${branch_name##refs/heads/}
+  branch_name=${branch_name:-HEAD}
+
+  if [ $branch_name == "master" ]
+  then return 0
+  fi
+
+  git checkout master
+  git rebase $branch_name
+  git branch -D $branch_name
+}
 
 export RUBY_FFI_NCURSES_LIB=ncursesw
 
