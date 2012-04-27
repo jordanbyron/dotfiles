@@ -1,6 +1,6 @@
 # Community
 
-before { run "cd ~/code/mendicant/community" }
+before { run "cd ~/code/mendicant/liskov" }
 
 run "mate ."
 

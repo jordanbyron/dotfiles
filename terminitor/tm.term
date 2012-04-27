@@ -21,8 +21,8 @@ tab "task_master_results queue" do
   run "QUEUE=\"task_master_results\" rake environment resque:work"
 end
 
-tab "server" do
-  run "script/server"
+tab "logs" do
+  run "tail -f log/development.log"
 end
 
 tab "console" do

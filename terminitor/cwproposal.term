@@ -4,9 +4,10 @@ before { run "cd ~/code/madriska/intsys/cwProposal" }
 
 run "open /Applications/Tomato.app"
 run "mate ."
+run "echo 'cwproposal.dev'"
 
-tab "server" do
-  run "script/server"
+tab "logs" do
+  run "tail -f log/development.log"
 end
 
 tab "console" do
