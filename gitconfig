@@ -1,6 +1,6 @@
 [user]
 	name = Jordan Byron
-	email = jordan@ducksoupsoftware.com
+	email = jordan.byron@gmail.com
 [core]
 	excludesfile = /Users/byron/.gitignore
 	editor = mate -w
@@ -14,3 +14,5 @@
 	filemode = true
 	bare = false
 	logallrefupdates = true
+[rerere]
+	enabled = 1
