@@ -1,6 +1,6 @@
---type-add=ruby=.haml,.rake
+--type-add=ruby=.haml,.rake,.erb
 --type-add=html=.html.erb,.html.haml
---type-add=js=.js.erb
+--type-add=js=.js.erb,.coffee
 --type-add=css=.sass,.scss
 
 --ignore-dir=vendor
