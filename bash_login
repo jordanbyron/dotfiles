@@ -5,6 +5,8 @@ export EDITOR="mate"
 source ~/.api_keys
 source ~/.todo
 
+[ -e "~/bin/z.sh" ] && . ~/bin/z.sh
+
 # Colors from http://wiki.archlinux.org/index.php/Color_Bash_Prompt
 # Misc
 NO_COLOR='\e[0m' #disable any colors
@@ -73,6 +75,15 @@ merger(){
   git checkout master
   git rebase $branch_name
   git branch -D $branch_name
+}
+
+fork_readme(){
+  git checkout --orphan forkreadme
+  git rm -rf .
+  forkreadme > README.md
+  git add README.md
+  git commit -m "Add fork notes"
+  git push origin forkreadme
 }
 
 export RUBY_FFI_NCURSES_LIB=ncursesw
