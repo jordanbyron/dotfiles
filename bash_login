@@ -1,6 +1,7 @@
 export PATH="~/bin:$PATH"
 
 export EDITOR="mate"
+export HISTCONTROL=ignorespace
 
 source ~/.api_keys
 source ~/.todo
