@@ -1,6 +1,0 @@
-# ADA Form
-
-before { run "cd ~/code/madriska/btree/ada-form" }
-
-run "open /Applications/Tomato.app"
-run "mate ."
