@@ -3,7 +3,7 @@
 	email = jordan.byron@gmail.com
 [core]
 	excludesfile = /Users/byron/.gitignore
-	editor = mate -w
+	editor = mvim -f
 	autocrlf = input
 	safecrlf = true
 [color]
@@ -14,5 +14,10 @@
 	filemode = true
 	bare = false
 	logallrefupdates = true
+  diff = auto
 [rerere]
 	enabled = 1
+[push]
+	default = matching
+[credential]
+	helper = osxkeychain

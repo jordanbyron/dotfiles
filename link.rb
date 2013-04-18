@@ -8,4 +8,5 @@ end
 
 # Terminitor is special
 
-`ln -nfs #{current_directory}/terminitor ~/.config/terminitor`
+# `ln -nfs #{current_directory}/terminitor ~/.config/terminitor`
+

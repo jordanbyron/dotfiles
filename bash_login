@@ -1,12 +1,13 @@
-export PATH="~/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/heroku/bin:$PATH"
 
-export EDITOR="mate"
+export ARCHFLAGS="-arch x86_64"
+export EDITOR="mvim"
 export HISTCONTROL=ignorespace
 
 source ~/.api_keys
 source ~/.todo
 
-[ -e "~/bin/z.sh" ] && . ~/bin/z.sh
+source ~/bin/z.sh
 
 # Colors from http://wiki.archlinux.org/index.php/Color_Bash_Prompt
 # Misc
@@ -53,38 +54,12 @@ DARKGRAY='\033[1;30m'
 export PS1="\[\033[G\]\u:\W \[$LIGHTGRAY\]\$(vcprompt)\[$NO_COLOR\]\$ "
 export PS2='> '
 
-alias synergy="/Applications/synergy-1.3.1/synergyc --name MacBookPro iMac.local"
-alias kill_synergy="killall synergyc"
-
 alias server='open http://localhost:8000 && python -m SimpleHTTPServer'
 
 alias git=hub
 
 kill_whitespace(){
   find . -not -path '.git' -iname '*.rb' -type f -print0 | xargs -0 sed -i '' -E "s/[[:space:]]*$//"
-}
-
-merger(){
-  branch_name=$(git symbolic-ref -q HEAD)
-  branch_name=${branch_name##refs/heads/}
-  branch_name=${branch_name:-HEAD}
-
-  if [ $branch_name == "master" ]
-  then return 0
-  fi
-
-  git checkout master
-  git rebase $branch_name
-  git branch -D $branch_name
-}
-
-fork_readme(){
-  git checkout --orphan forkreadme
-  git rm -rf .
-  forkreadme > README.md
-  git add README.md
-  git commit -m "Add fork notes"
-  git push origin forkreadme
 }
 
 export RUBY_FFI_NCURSES_LIB=ncursesw
@@ -95,4 +70,4 @@ export RUBYLIB="/usr/local/lib:$RUBYLIB"
 
 export NODE_PATH="/usr/local/lib/node:$NODE_PATH"
 
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+eval "$(rbenv init -)"

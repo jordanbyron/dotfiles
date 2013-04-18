@@ -1,2 +1,5 @@
 .DS_Store
 .rvmrc
+.ruby-version
+*.swp
+.kick
