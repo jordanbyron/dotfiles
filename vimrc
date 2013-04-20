@@ -24,7 +24,7 @@ set splitbelow
 set splitright
 set winwidth=86 " approx 80 columns plus line numbers and marks sidebar
 set list
-set listchars=trail:●
+set listchars=trail:•
 
 """ MacVIM GUI options
 if has("gui_running")
