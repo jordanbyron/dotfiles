@@ -58,6 +58,20 @@ alias server='open http://localhost:8000 && python -m SimpleHTTPServer'
 
 alias git=hub
 
+# Git Aliases
+
+alias gs='git status'
+alias gc='git commit'
+alias gco='git checkout'
+alias gl='git pull'
+alias gpom="git pull origin master"
+alias gp='git push'
+alias gd='git diff | mvim -'
+alias gb='git branch'
+alias gba='git branch -a'
+alias del='git branch -d'
+
+
 kill_whitespace(){
   find . -not -path '.git' -iname '*.rb' -type f -print0 | xargs -0 sed -i '' -E "s/[[:space:]]*$//"
 }

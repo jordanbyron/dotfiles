@@ -1,23 +1,23 @@
 [user]
-	name = Jordan Byron
-	email = jordan.byron@gmail.com
+  name = Jordan Byron
+  email = jordan.byron@gmail.com
 [core]
-	excludesfile = /Users/byron/.gitignore
-	editor = mvim -f
-	autocrlf = input
-	safecrlf = true
+  excludesfile = /Users/byron/.gitignore
+  editor = mvim -f
+  autocrlf = input
+  safecrlf = true
 [color]
-	status = auto
-	branch = auto
-	interactive = auto
-	repositoryformatversion = 0
-	filemode = true
-	bare = false
-	logallrefupdates = true
+  status = auto
+  branch = auto
+  interactive = auto
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
   diff = auto
 [rerere]
-	enabled = 1
+  enabled = 1
 [push]
-	default = matching
+  default = matching
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
