@@ -1,0 +1,16 @@
+section: screens
+ 7224.local:
+ MacPro7224.local:
+end
+
+section: aliases
+  MacPro7224.local:
+    Jordans-Mac-Pro.local
+end
+
+section: links
+ 7224.local:
+  left = MacPro7224.local
+ MacPro7224.local:
+  right = 7224.local
+end
