@@ -49,8 +49,8 @@ map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " Shortcut for Ack
 map <leader>/ :Ack
 
-" Spin
-map <leader>s ! clear; bundle exec spin push %<esc>
+" Git Commit Message
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 map <leader>r :CtrlPBuffer<cr>
 map <leader>[ :BufSurfBack<cr>
