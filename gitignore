@@ -3,3 +3,4 @@
 .ruby-version
 *.swp
 .kick
+.turbine

@@ -33,7 +33,7 @@ if has("gui_running")
 
   set visualbell t_vb=
 
-  set guifont=Inconsolata:h18
+  set guifont=Inconsolata:h16
 
   " set to nice size
   set lines=50 columns=90
@@ -47,10 +47,12 @@ let mapleader = ","
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
 " Shortcut for Ack
-map <leader>/ :Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+map <leader>/ :Ack 
 
 " Git Commit Message
 autocmd Filetype gitcommit setlocal spell textwidth=72
+autocmd BufNewFile,BufRead *.txt* set spell
 
 map <leader>r :CtrlPBuffer<cr>
 map <leader>[ :BufSurfBack<cr>

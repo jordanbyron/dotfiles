@@ -1,7 +1,9 @@
 export PATH="$HOME/bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/heroku/bin:$PATH"
 
+export RBENV_ROOT=/usr/local/var/rbenv
 export ARCHFLAGS="-arch x86_64"
 export EDITOR="mvim"
+export MM_EDITOR="mvim -f"
 export HISTCONTROL=ignorespace
 
 source ~/.api_keys
@@ -66,6 +68,7 @@ alias gco='git checkout'
 alias gl='git pull'
 alias gpom="git pull origin master"
 alias gp='git push'
+alias gph="git push heroku master"
 alias gd='git diff | mvim -'
 alias gb='git branch'
 alias gba='git branch -a'
@@ -76,6 +79,9 @@ kill_whitespace(){
   find . -not -path '.git' -iname '*.rb' -type f -print0 | xargs -0 sed -i '' -E "s/[[:space:]]*$//"
 }
 
+wtf(){
+  bundle show --paths | xargs ag $1
+}
 export RUBY_FFI_NCURSES_LIB=ncursesw
 
 export CLIENT_MIN_MESSAGES=0
@@ -84,4 +90,4 @@ export RUBYLIB="/usr/local/lib:$RUBYLIB"
 
 export NODE_PATH="/usr/local/lib/node:$NODE_PATH"
 
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
