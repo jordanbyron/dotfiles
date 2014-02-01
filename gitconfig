@@ -3,7 +3,7 @@
   email = jordan.byron@gmail.com
 [core]
   excludesfile = /Users/byron/.gitignore
-  editor = mvim -f
+  editor   = mvim -f
   autocrlf = input
   safecrlf = true
 [color]

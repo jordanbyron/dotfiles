@@ -52,12 +52,19 @@ map <leader>/ :Ack
 
 " Git Commit Message
 autocmd Filetype gitcommit setlocal spell textwidth=72
+autocmd BufNewFile,BufRead *.md setlocal spell textwidth=80
 autocmd BufNewFile,BufRead *.txt* set spell
 
 map <leader>r :CtrlPBuffer<cr>
 map <leader>[ :BufSurfBack<cr>
 map <leader>] :BufSurfForward<cr>
 map :bc <Plug>Kwbd
+
+" CtrlP settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 map <leader>cc :CtrlPClearCache<cr>
 
 " Console vim uses system clipboard
@@ -80,7 +87,10 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
+map <Leader>o :RunRailsFocusedTest<CR>
+map <Leader>t :RunAllRubyTests<CR>
+
 syntax on
 filetype plugin indent on
 
-autocmd BufWritePre *.rb,*.haml,*.rake,*.erb,*.css,*.sass,*.scss,*.js,*.coffee :%s/\s\+$//e
+autocmd BufWritePre *.rb,*.haml,*.rake,*.erb,*.css,*.sass,*.scss,*.js,*.coffee,*.god :%s/\s\+$//e
