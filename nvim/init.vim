@@ -18,7 +18,6 @@ Plug 'rgarver/Kwbd.vim'
 Plug 'tpope/vim-endwise'
 Plug 'pangloss/vim-javascript'
 Plug 'mileszs/ack.vim'
-Plug 'ervandew/supertab'
 Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-fugitive'
@@ -33,16 +32,16 @@ Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'williamboman/mason.nvim'
-" Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig'
 " Plug 'pmizio/typescript-tools.nvim'
 " Plug 'folke/trouble.nvim'
 
 " Plug 'jose-elias-alvarez/null-ls.nvim'
 " Plug 'MunifTanjim/prettier.nvim'
 
-Plug 'zbirenbaum/copilot.lua'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
+" Plug 'zbirenbaum/copilot.lua'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'main' }
 
 " gS to split a one-liner into multiple lines
 " gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
@@ -121,13 +120,18 @@ map <leader>[ :bnext<cr>
 map <leader>] :bprevious<cr>
 " map :bc <Plug>Kwbd
 
-" CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-let g:ctrlp_custom_ignore = { 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|node_modules$\|recordings$\' }
-map <leader>cc :CtrlPClearCache<cr>
+" Smart Tab mapping that preserves indentation functionality
+inoremap <expr><Tab> CheckBackspace() ? "\<Tab>" : "\<C-n>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~# '\s'
+endfunction`
+
+" Use Tab to navigate down in popup menu
+inoremap <expr><Tab> pumvisible() ? "\<Down>" : CheckBackspace() ? "\<Tab>" : "\<C-n>"
+" Use Shift+Tab to navigate up in popup menu
+inoremap <expr><S-Tab> pumvisible() ? "\<Up>" : "\<S-Tab>"
 
 " Console vim uses system clipboard
 set clipboard=unnamed
@@ -196,15 +200,9 @@ let test#strategy = "neovim"
 let g:syntastic_html_checkers=['']
 
 lua << EOF
-require("CopilotChat").setup {
-  --debug = true, -- Enable debugging
-  -- See Configuration section for rest
-}
-
-require("mason").setup()
 EOF
 
-nnoremap <leader>ce <cmd>CopilotChatExplain<cr>
-nnoremap <leader>ct <cmd>CopilotChatTests<cr>
-xnoremap <leader>cv :CopilotChatVisual<cr>
-xnoremap <leader>cx :CopilotChatInPlace<cr>
+" nnoremap <leader>ce <cmd>CopilotChatExplain<cr>
+" nnoremap <leader>ct <cmd>CopilotChatTests<cr>
+" xnoremap <leader>cv :CopilotChatVisual<cr>
+" xnoremap <leader>cx :CopilotChatInPlace<cr>
