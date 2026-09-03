@@ -126,7 +126,7 @@ inoremap <expr><Tab> CheckBackspace() ? "\<Tab>" : "\<C-n>"
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1] =~# '\s'
-endfunction`
+endfunction
 
 " Use Tab to navigate down in popup menu
 inoremap <expr><Tab> pumvisible() ? "\<Down>" : CheckBackspace() ? "\<Tab>" : "\<C-n>"
