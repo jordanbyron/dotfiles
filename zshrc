@@ -19,7 +19,6 @@ plugins=(git fzf)
 source $ZSH/oh-my-zsh.sh
 
 alias gs="gsb"
-alias grl="grbm && gpf && gh pr edit --add-label 'ready-for-merge'"
 
 # Worktree-aware git helpers (gco, gcm, gbda, gbds) — linked by link.rb.
 [ -f ~/.git-worktree.zsh ] && source ~/.git-worktree.zsh
