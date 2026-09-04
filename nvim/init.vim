@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-ruby/vim-ruby'
 Plug 'scrooloose/nerdtree'
-" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
@@ -18,6 +17,7 @@ Plug 'rgarver/Kwbd.vim'
 Plug 'tpope/vim-endwise'
 Plug 'pangloss/vim-javascript'
 Plug 'mileszs/ack.vim'
+Plug 'ervandew/supertab'
 Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-fugitive'
@@ -26,22 +26,21 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'sgur/vim-editorconfig'
 Plug 'slim-template/vim-slim'
 Plug 'sbdchd/neoformat'
-Plug 'github/copilot.vim'
+" Copilot, off by default. Uncomment and :PlugInstall to bring it back.
+" Plug 'github/copilot.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'williamboman/mason.nvim'
 Plug 'neovim/nvim-lspconfig'
-" Plug 'pmizio/typescript-tools.nvim'
+Plug 'pmizio/typescript-tools.nvim'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 " Plug 'folke/trouble.nvim'
 
 " Plug 'jose-elias-alvarez/null-ls.nvim'
 " Plug 'MunifTanjim/prettier.nvim'
-
-" Plug 'zbirenbaum/copilot.lua'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'main' }
 
 " gS to split a one-liner into multiple lines
 " gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
@@ -57,6 +56,20 @@ Plug 'skwp/greplace.vim'
 
 " Initialize plugin system
 call plug#end()
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+
+" supertab owns <Tab> where it's installed, and it errors if something else
+" claimed <S-Tab> first. Its g:loaded_ flag isn't set yet at this point,
+" because plugin files are sourced after this one. plug#end() has already put
+" supertab on the runtimepath though, so look for the file itself.
+if empty(globpath(&runtimepath, 'plugin/supertab.vim'))
+  inoremap <expr><Tab>   pumvisible() ? "\<Down>" : CheckBackspace() ? "\<Tab>" : "\<C-n>"
+  inoremap <expr><S-Tab> pumvisible() ? "\<Up>" : "\<S-Tab>"
+endif
 
 " Config to write tmp files to a standard directory to keep docker happy
 set directory=$HOME/.vim/tmp//
@@ -115,23 +128,9 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-" map <leader>r :CtrlPBuffer<cr>
 map <leader>[ :bnext<cr>
 map <leader>] :bprevious<cr>
 " map :bc <Plug>Kwbd
-
-" Smart Tab mapping that preserves indentation functionality
-inoremap <expr><Tab> CheckBackspace() ? "\<Tab>" : "\<C-n>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1] =~# '\s'
-endfunction
-
-" Use Tab to navigate down in popup menu
-inoremap <expr><Tab> pumvisible() ? "\<Down>" : CheckBackspace() ? "\<Tab>" : "\<C-n>"
-" Use Shift+Tab to navigate up in popup menu
-inoremap <expr><S-Tab> pumvisible() ? "\<Up>" : "\<S-Tab>"
 
 " Console vim uses system clipboard
 set clipboard=unnamed
@@ -194,15 +193,10 @@ nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 
 let test#strategy = "neovim"
 
-" autocmd BufNewFile,BufRead /path/to/code* let test#project_root = "/project-root"
-
 " stop checking HTML files
 let g:syntastic_html_checkers=['']
 
 lua << EOF
+require("mason").setup()
+require('lsp-config')
 EOF
-
-" nnoremap <leader>ce <cmd>CopilotChatExplain<cr>
-" nnoremap <leader>ct <cmd>CopilotChatTests<cr>
-" xnoremap <leader>cv :CopilotChatVisual<cr>
-" xnoremap <leader>cx :CopilotChatInPlace<cr>

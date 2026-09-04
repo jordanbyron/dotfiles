@@ -7,5 +7,10 @@ dot_files.each do |dot|
   `ln -nfs #{current_directory}/#{dot} ~/.#{dot}`
 end
 
-`mkdir -p ~/.config/nvim`
-`ln -nfs #{current_directory}/nvim/init.vim ~/.config/nvim/init.vim`
+`mkdir -p ~/.config/nvim/lua`
+
+# Linked file by file, not directory by directory: `ln -nfs` given an existing
+# real directory writes the link inside it instead of replacing it.
+%w{init.vim lua/lsp-config.lua RUBY_LSP_KEYBINDINGS.md}.each do |f|
+  `ln -nfs #{current_directory}/nvim/#{f} ~/.config/nvim/#{f}`
+end
