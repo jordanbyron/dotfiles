@@ -24,6 +24,7 @@ Open a new terminal when it finishes, then work through the manual steps below.
 | `bootstrap.sh` | New-Mac setup, start here |
 | `Brewfile` | Homebrew formulae, casks and taps (`brew bundle`) |
 | `macos-defaults.sh` | System preferences: keyboard, trackpad, Finder, Dock, screenshots |
+| `ssh-setup.sh` | Key generation, Keychain, `authorized_keys` from your GitHub keys |
 | `terminal/Basic.terminal` | Terminal.app profile — SF Mono 14, option as meta, no bell |
 | `link.rb` | Symlinks everything in this repo into `~` |
 | `zshrc`, `zshrc.local.example` | Shell config; per-machine bits go in the untracked `~/.zshrc.local` |
@@ -51,6 +52,28 @@ plistlib.dump(p, open('terminal/Basic.terminal','wb'))
 PY
 ```
 
+### SSH
+
+`bootstrap.sh` runs `ssh-setup.sh`, which is also fine to run on its own. It:
+
+1. Generates `~/.ssh/id_ed25519` if the machine doesn't have one, prompting for
+   a passphrase rather than silently creating an unprotected key.
+2. Loads it into the agent and the login Keychain, adding a `Host *` block to
+   `~/.ssh/config` so it stays loaded across reboots.
+3. Fetches the keys you've published at `https://github.com/<user>.keys` and
+   appends any that are missing to `~/.ssh/authorized_keys`, so you can ssh
+   *into* the new Mac from your other machines.
+4. Offers to turn on Remote Login.
+
+Step 3 is why nothing secret lives in this repo: public keys stay on GitHub,
+and adding a key there is enough to authorize it everywhere on the next run.
+The flip side is that anyone who controls that GitHub account can log into
+these machines — worth a hardware 2FA key on the account.
+
+It only ever appends to `authorized_keys`, so keys you added by hand survive.
+Keys that aren't on GitHub, including older RSA ones, won't be carried over —
+add them to GitHub or copy them across manually.
+
 ### Keeping the Brewfile current
 
 ```sh
@@ -63,9 +86,10 @@ brew list --cask
 These hold credentials or need a browser login, so they're deliberately not
 tracked:
 
-- **SSH keys** — generate fresh ones (`ssh-keygen -t ed25519`) and add the
-  public key to GitHub rather than copying `~/.ssh` across. Bring over
-  `~/.ssh/config` by hand if there are hosts worth keeping.
+- **SSH** — `ssh-setup.sh` handles most of it (see below); what's left is
+  adding the new Mac's public key at https://github.com/settings/keys so it
+  can reach your other machines, and bringing over `~/.ssh/config` by hand if
+  there are hosts worth keeping.
 - **GPG keys** — export from the old Mac (`gpg --export-secret-keys --armor`)
   and import on the new one. `pinentry-mac` is in the Brewfile.
 - **`gh` auth** — `gh auth login`. The gitconfig credential helper depends on
