@@ -56,13 +56,24 @@ defaults write com.apple.screencapture location -string "$HOME/Desktop/Screensho
 defaults write com.apple.screencapture disable-shadow -bool true
 
 # --- Terminal -------------------------------------------------------------
-# Import the exported profile and make it the default.  Terminal must be
-# closed for this to stick reliably.
-PROFILE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/terminal/Basic.terminal"
+# Import the exported profile (unless it's already there) and make it the
+# default.  The default is set through Terminal itself: `defaults write` gets
+# overwritten when a running Terminal quits.
+TERMINAL_PROFILE="Jordan"
+PROFILE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/terminal/$TERMINAL_PROFILE.terminal"
+has_profile() {
+  osascript -e "tell application \"Terminal\" to exists settings set \"$TERMINAL_PROFILE\"" 2>/dev/null |
+    grep -q true
+}
 if [ -f "$PROFILE" ]; then
-  open "$PROFILE"
-  defaults write com.apple.Terminal "Default Window Settings" -string "Basic"
-  defaults write com.apple.Terminal "Startup Window Settings" -string "Basic"
+  if ! has_profile; then
+    open "$PROFILE"  # imports it and opens a window with it
+    for _ in 1 2 3 4 5 6 7 8 9 10; do has_profile && break; sleep 1; done
+  fi
+  osascript -e "tell application \"Terminal\"
+    set default settings to settings set \"$TERMINAL_PROFILE\"
+    set startup settings to settings set \"$TERMINAL_PROFILE\"
+  end tell" >/dev/null || echo "set the $TERMINAL_PROFILE profile as default in Terminal → Settings → Profiles"
 fi
 
 echo "Restarting affected apps…"

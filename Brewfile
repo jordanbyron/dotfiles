@@ -3,7 +3,6 @@
 # Only top-level packages (`brew leaves`) are listed — Homebrew pulls in the
 # dependencies.  Grouped by what they're for, so pruning is easy.
 
-tap "homebrew/services"
 tap "code-yeongyu/tap"      # comment-checker, used by the Claude Code hook
 tap "getsentry/tools"
 

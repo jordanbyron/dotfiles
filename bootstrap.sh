@@ -58,7 +58,7 @@ step "SSH"
 "$DOTFILES/ssh-setup.sh"
 
 step "asdf plugins and runtimes"
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 for plugin in direnv golang nodejs python ruby; do
   asdf plugin list 2>/dev/null | grep -qx "$plugin" || asdf plugin add "$plugin"
 done

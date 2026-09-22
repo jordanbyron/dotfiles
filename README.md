@@ -25,7 +25,7 @@ Open a new terminal when it finishes, then work through the manual steps below.
 | `Brewfile` | Homebrew formulae, casks and taps (`brew bundle`) |
 | `macos-defaults.sh` | System preferences: keyboard, trackpad, Finder, Dock, screenshots |
 | `ssh-setup.sh` | Key generation, Keychain, `authorized_keys` from your GitHub keys |
-| `terminal/Basic.terminal` | Terminal.app profile — SF Mono 14, option as meta, no bell |
+| `terminal/Jordan.terminal` | Terminal.app profile — SF Mono 14, option as meta, no bell |
 | `link.rb` | Symlinks everything in this repo into `~` |
 | `zshrc`, `zshrc.local.example` | Shell config; per-machine bits go in the untracked `~/.zshrc.local` |
 | `git-worktree.zsh` | Worktree-aware `gco` / `gcm` / `gbda` / `gbds` |
@@ -37,7 +37,7 @@ Open a new terminal when it finishes, then work through the manual steps below.
 
 ### Terminal
 
-`macos-defaults.sh` imports `terminal/Basic.terminal` and makes it the default.
+`macos-defaults.sh` imports `terminal/Jordan.terminal` and makes it the default.
 To do it by hand: quit Terminal, double-click the file, then set it as default
 in Terminal → Settings → Profiles.
 
@@ -45,10 +45,10 @@ To re-export after changing the profile on this Mac:
 
 ```sh
 python3 - <<'PY'
-import plistlib
-src = plistlib.load(open('/Users/$USER/Library/Preferences/com.apple.Terminal.plist','rb'))
-p = dict(src['Window Settings']['Basic']); p['columnCount'] = 160; p['rowCount'] = 45
-plistlib.dump(p, open('terminal/Basic.terminal','wb'))
+import os, plistlib
+src = plistlib.load(open(os.path.expanduser('~/Library/Preferences/com.apple.Terminal.plist'),'rb'))
+p = dict(src['Window Settings']['Jordan']); p['columnCount'] = 160; p['rowCount'] = 45
+plistlib.dump(p, open('terminal/Jordan.terminal','wb'))
 PY
 ```
 

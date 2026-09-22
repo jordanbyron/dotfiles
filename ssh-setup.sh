@@ -64,7 +64,9 @@ else
 fi
 
 step "Remote Login"
-if systemsetup -getremotelogin 2>/dev/null | grep -qi "on$"; then
+# sshd is only loaded while Remote Login is on.  (systemsetup can't be used to
+# check: without sudo it prints an error instead of the setting.)
+if launchctl print system/com.openssh.sshd >/dev/null 2>&1; then
   echo "already on"
 elif confirm "Turn on Remote Login so you can ssh into this Mac?"; then
   sudo systemsetup -setremotelogin on ||

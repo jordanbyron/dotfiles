@@ -28,8 +28,8 @@ for _z in /opt/homebrew/etc/profile.d/z.sh ~/bin/z.sh; do
 done
 unset _z
 
-if [ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]; then
-  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+if command -v asdf >/dev/null; then
+  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
   # Hook direnv into your shell.
   eval "$(asdf exec direnv hook zsh)"
