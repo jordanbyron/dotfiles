@@ -85,16 +85,16 @@ brew "testdisk"
 # --- Casks ----------------------------------------------------------------
 cask "blackhole-2ch"        # virtual audio device
 cask "db-browser-for-sqlite"
+cask "firefox"
+cask "flycut"               # clipboard history
+cask "google-chrome"
+cask "keepingyouawake"
 cask "mitmproxy"
 cask "ngrok"
 
 # --- Optional: apps installed by hand on the old Mac ----------------------
 # Uncomment the ones worth carrying over.
 # cask "1password"
-# cask "firefox"
-# cask "google-chrome"
 # cask "docker-desktop"
-# cask "flycut"             # clipboard history
-# cask "keepingyouawake"
 # cask "zoom"
 # cask "claude"
