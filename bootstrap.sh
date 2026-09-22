@@ -54,6 +54,9 @@ if [ ! -f "$HOME/.zshrc.local" ]; then
   echo "created ~/.zshrc.local from the example"
 fi
 
+step "SSH"
+"$DOTFILES/ssh-setup.sh"
+
 step "asdf plugins and runtimes"
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 for plugin in direnv golang nodejs python ruby; do
