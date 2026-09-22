@@ -1,0 +1,7 @@
+# Machine-specific zsh config, sourced by ~/.zshrc.  Copy to ~/.zshrc.local.
+#
+# Anything that differs per machine or shouldn't be public belongs here:
+# extra PATH entries, paths to credential files, per-client env vars.
+
+# export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+# export SOME_API_KEY_PATH=~/.config/some-service/key.json

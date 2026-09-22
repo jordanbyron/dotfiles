@@ -2,7 +2,7 @@
   name = Jordan Byron
   email = jordan@jordanbyron.com
 [core]
-  excludesfile = /Users/byron/.gitignore
+  excludesfile = ~/.gitignore
   editor = nvim
   autocrlf = input
   safecrlf = true
@@ -10,20 +10,21 @@
   status = auto
   branch = auto
   interactive = auto
-  repositoryformatversion = 0
-  filemode = true
-  bare = false
-  logallrefupdates = true
   diff = auto
 [rerere]
   enabled = 1
 [push]
-  default = matching
+  default = simple
+  autoSetupRemote = true
+[init]
+  defaultBranch = main
+[diff]
+  algorithm = histogram
 [credential]
   helper = osxkeychain
 [credential "https://github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+  helper =
+  helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+  helper =
+  helper = !/opt/homebrew/bin/gh auth git-credential

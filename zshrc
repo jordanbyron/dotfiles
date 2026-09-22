@@ -23,13 +23,16 @@ alias gs="gsb"
 # Worktree-aware git helpers (gco, gcm, gbda, gbds) — linked by link.rb.
 [ -f ~/.git-worktree.zsh ] && source ~/.git-worktree.zsh
 
-[ -f ~/bin/z.sh ] && source ~/bin/z.sh
+for _z in /opt/homebrew/etc/profile.d/z.sh ~/bin/z.sh; do
+  [ -f "$_z" ] && source "$_z" && break
+done
+unset _z
 
 if [ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]; then
   . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
   # Hook direnv into your shell.
-  eval "$(asdf exec direnv hook bash)"
+  eval "$(asdf exec direnv hook zsh)"
 
   # A shortcut for asdf managed direnv.
   direnv() { asdf exec direnv "$@"; }
