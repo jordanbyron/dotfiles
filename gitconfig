@@ -1,9 +1,9 @@
 [user]
   name = Jordan Byron
-  email = jordan.byron@gmail.com
+  email = jordan@jordanbyron.com
 [core]
   excludesfile = /Users/byron/.gitignore
-  editor   = mvim -f
+  editor = nvim
   autocrlf = input
   safecrlf = true
 [color]
@@ -21,3 +21,9 @@
   default = matching
 [credential]
   helper = osxkeychain
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
