@@ -1,4 +1,3 @@
-let g:python_host_prog = '/usr/local/bin/python3'
 let $NVIM_TUI_ENABLE_TRUE_COLOR=0
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
