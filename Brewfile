@@ -69,14 +69,13 @@ cask "android-platform-tools"
 # --- Hardware / making ----------------------------------------------------
 brew "arduino-cli"
 brew "urh"                  # universal radio hacker
-cask "openscad"
 
 # --- Local AI -------------------------------------------------------------
 brew "ollama"
 
 # --- Claude Code helpers --------------------------------------------------
-brew "code-yeongyu/tap/comment-checker"
-brew "getsentry/tools/sentry-wizard"
+brew "code-yeongyu/tap/comment-checker", trusted: true
+brew "getsentry/tools/sentry-wizard", trusted: true
 
 # --- Misc -----------------------------------------------------------------
 brew "cliclick"             # scripted mouse/keyboard clicks
