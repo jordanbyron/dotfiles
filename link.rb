@@ -1,6 +1,6 @@
 current_directory = File.dirname(File.expand_path(__FILE__))
 
-dot_files = %w{js ackrc gitconfig gitignore irbrc gemrc
+dot_files = %w{ackrc gitconfig gitignore irbrc gemrc
                git-worktree.zsh zshrc}
 
 dot_files.each do |dot|
