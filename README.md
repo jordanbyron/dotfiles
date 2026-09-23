@@ -93,7 +93,8 @@ tracked:
 - **GPG keys** — export from the old Mac (`gpg --export-secret-keys --armor`)
   and import on the new one. `pinentry-mac` is in the Brewfile.
 - **`gh` auth** — `gh auth login`. The gitconfig credential helper depends on
-  it. Then `gh extension install basecamp/gh-signoff github/gh-stack`.
+  it. Re-run bootstrap afterwards to install `gh-signoff`, then
+  `gh extension install github/gh-stack`.
 - **`~/.zshrc.local`** — bootstrap copies the example; fill in this machine's
   PATH entries and credential paths.
 - **`~/.netrc`, `~/.claude.json`, app keychains, 1Password, Dropbox** — sign in

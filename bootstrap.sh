@@ -57,6 +57,16 @@ fi
 step "SSH"
 "$DOTFILES/ssh-setup.sh"
 
+step "gh extensions"
+# Installing an extension goes through the GitHub API, so it needs a logged-in
+# gh. On a fresh Mac that's still a manual step; re-run once it's done.
+if gh auth status >/dev/null 2>&1; then
+  gh extension list | grep -q 'basecamp/gh-signoff' ||
+    gh extension install basecamp/gh-signoff
+else
+  echo "gh isn't logged in — run \`gh auth login\`, then re-run this script"
+fi
+
 step "asdf plugins and runtimes"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 for plugin in direnv golang nodejs python ruby; do
