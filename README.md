@@ -98,9 +98,10 @@ tracked:
   PATH entries and credential paths.
 - **`~/.netrc`, `~/.claude.json`, app keychains, 1Password, Dropbox** — sign in
   on the new Mac.
-- **Claude Code** — copy `claude/settings.json.example` to
-  `~/.claude/settings.json` and `claude/statusline.sh` to
-  `~/.claude/statusline.sh`. Personal skills under `~/.claude/skills` and hooks
+- **Claude Code** — `link.rb` links `claude/statusline.sh` to
+  `~/.claude/statusline.sh`, but the statusline only shows once
+  `~/.claude/settings.json` has the `statusLine` block: copy
+  `claude/settings.json.example` over, or merge in the keys you want. Personal skills under `~/.claude/skills` and hooks
   under `~/.claude/hooks` are not tracked here; copy the ones you want.
 - **App Store apps and non-cask apps** — Xcode, Keynote/Pages/Numbers, the
   1Password Safari extension, and anything else installed by hand.

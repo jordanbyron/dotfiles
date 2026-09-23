@@ -14,3 +14,8 @@ end
 %w{init.vim lua/lsp-config.lua RUBY_LSP_KEYBINDINGS.md}.each do |f|
   `ln -nfs #{current_directory}/nvim/#{f} ~/.config/nvim/#{f}`
 end
+
+# Only the statusline is linked: Claude Code rewrites settings.json itself, so
+# that stays a per-machine copy of claude/settings.json.example.
+`mkdir -p ~/.claude`
+`ln -nfs #{current_directory}/claude/statusline.sh ~/.claude/statusline.sh`
