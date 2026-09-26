@@ -64,8 +64,8 @@ PY
    appends any that are missing to `~/.ssh/authorized_keys`, so you can ssh
    *into* the new Mac from your other machines.
 4. Sets the key up for commit signing: adds it to `~/.ssh/allowed_signers`
-   so git can verify your own signatures, and uploads it to GitHub as a
-   signing key (needs `gh auth refresh -s admin:ssh_signing_key` once).
+   so git can verify your own signatures. The gitconfig signs with
+   `~/.ssh/id_ed25519.pub`.
 5. Offers to turn on Remote Login.
 
 Step 3 is why nothing secret lives in this repo: public keys stay on GitHub,
@@ -90,13 +90,12 @@ These hold credentials or need a browser login, so they're deliberately not
 tracked:
 
 - **SSH** — `ssh-setup.sh` handles most of it (see below); what's left is
-  adding the new Mac's public key at https://github.com/settings/keys so it
-  can reach your other machines, and bringing over `~/.ssh/config` by hand if
-  there are hosts worth keeping.
-- **`gh` auth** — `gh auth login`, then
-  `gh auth refresh -h github.com -s admin:ssh_signing_key`. The gitconfig
-  credential helper depends on it, and GitHub only marks commits Verified once
-  `ssh-setup.sh` has uploaded the key as a signing key. Re-run bootstrap afterwards to install `gh-signoff`, then
+  adding the new Mac's public key at https://github.com/settings/ssh/new
+  twice, once as an Authentication Key so it can reach your other machines
+  and once as a Signing Key so GitHub marks your commits Verified, and
+  bringing over `~/.ssh/config` by hand if there are hosts worth keeping.
+- **`gh` auth** — `gh auth login`. The gitconfig credential helper depends on
+  it. Re-run bootstrap afterwards to install `gh-signoff`, then
   `gh extension install github/gh-stack`.
 - **`~/.zshrc.local`** — bootstrap copies the example; fill in this machine's
   PATH entries and credential paths.
