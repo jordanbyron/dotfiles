@@ -102,7 +102,9 @@ tracked:
 - **Claude Code** — `link.rb` links `claude/statusline.sh` to
   `~/.claude/statusline.sh`, but the statusline only shows once
   `~/.claude/settings.json` has the `statusLine` block: copy
-  `claude/settings.json.example` over, or merge in the keys you want. Personal skills under `~/.claude/skills` and hooks
-  under `~/.claude/hooks` are not tracked here; copy the ones you want.
+  `claude/settings.json.example` over, or merge in the keys you want. Bootstrap
+  clones [agent-skills](https://github.com/jordanbyron/agent-skills) to
+  `~/code/agent-skills` and links each of its skills into `~/.claude/skills`;
+  hooks under `~/.claude/hooks` are not tracked here, so copy the ones you want.
 - **App Store apps and non-cask apps** — Xcode, Keynote/Pages/Numbers, the
   1Password Safari extension, and anything else installed by hand.
