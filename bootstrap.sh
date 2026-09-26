@@ -67,6 +67,21 @@ else
   echo "gh isn't logged in — run \`gh auth login\`, then re-run this script"
 fi
 
+step "Agent skills"
+SKILLS_REPO="$HOME/code/agent-skills"
+if [ -d "$SKILLS_REPO/.git" ]; then
+  echo "already cloned"
+else
+  git clone https://github.com/jordanbyron/agent-skills.git "$SKILLS_REPO"
+fi
+# Skills are grouped by domain (design/, rails/, ...), so link each directory
+# holding a SKILL.md into ~/.claude/skills under its own name.
+mkdir -p "$HOME/.claude/skills"
+for skill in "$SKILLS_REPO"/*/*/SKILL.md; do
+  dir="$(dirname "$skill")"
+  ln -nfs "$dir" "$HOME/.claude/skills/$(basename "$dir")"
+done
+
 step "asdf plugins and runtimes"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 for plugin in direnv golang nodejs python ruby; do
