@@ -63,6 +63,23 @@ else
   echo "couldn't fetch github.com/${GITHUB_USER}.keys — add keys to $AUTHORIZED by hand"
 fi
 
+step "Commit signing"
+# gitconfig signs with this key; allowed_signers lets `git log --show-signature`
+# verify our own commits locally.
+SIGNERS="$HOME/.ssh/allowed_signers"
+email="$(git config --get user.email)"
+pubkey="$(cut -d' ' -f1,2 "${KEY}.pub")"
+grep -qF "$pubkey" "$SIGNERS" 2>/dev/null || echo "$email $pubkey" >> "$SIGNERS"
+if gh ssh-key list 2>/dev/null | grep -F "${pubkey#* }" | grep -q signing; then
+  echo "already a GitHub signing key"
+elif gh ssh-key add "${KEY}.pub" --type signing --title "$(hostname -s) signing" 2>/dev/null; then
+  echo "added to GitHub as a signing key"
+else
+  echo "couldn't add the signing key to GitHub — run:"
+  echo "  gh auth refresh -h github.com -s admin:ssh_signing_key"
+  echo "  gh ssh-key add ${KEY}.pub --type signing --title \"$(hostname -s) signing\""
+fi
+
 step "Remote Login"
 # sshd is only loaded while Remote Login is on.  (systemsetup can't be used to
 # check: without sudo it prints an error instead of the setting.)

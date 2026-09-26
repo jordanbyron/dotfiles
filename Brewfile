@@ -22,7 +22,6 @@ brew "asdf"                 # ruby/node/python/go/direnv — see .tool-versions
 
 # --- Git / GitHub ---------------------------------------------------------
 brew "gh"
-brew "pinentry-mac"         # GPG pinentry for signed commits
 
 # --- Languages and build tools --------------------------------------------
 brew "cmake"

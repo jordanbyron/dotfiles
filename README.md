@@ -24,7 +24,7 @@ Open a new terminal when it finishes, then work through the manual steps below.
 | `bootstrap.sh` | New-Mac setup, start here |
 | `Brewfile` | Homebrew formulae, casks and taps (`brew bundle`) |
 | `macos-defaults.sh` | System preferences: keyboard, trackpad, Finder, Dock, screenshots |
-| `ssh-setup.sh` | Key generation, Keychain, `authorized_keys` from your GitHub keys |
+| `ssh-setup.sh` | Key generation, Keychain, `authorized_keys` from your GitHub keys, commit signing |
 | `terminal/Jordan.terminal` | Terminal.app profile — SF Mono 14, option as meta, no bell |
 | `link.rb` | Symlinks everything in this repo into `~` |
 | `zshrc`, `zshrc.local.example` | Shell config; per-machine bits go in the untracked `~/.zshrc.local` |
@@ -63,7 +63,10 @@ PY
 3. Fetches the keys you've published at `https://github.com/<user>.keys` and
    appends any that are missing to `~/.ssh/authorized_keys`, so you can ssh
    *into* the new Mac from your other machines.
-4. Offers to turn on Remote Login.
+4. Sets the key up for commit signing: adds it to `~/.ssh/allowed_signers`
+   so git can verify your own signatures, and uploads it to GitHub as a
+   signing key (needs `gh auth refresh -s admin:ssh_signing_key` once).
+5. Offers to turn on Remote Login.
 
 Step 3 is why nothing secret lives in this repo: public keys stay on GitHub,
 and adding a key there is enough to authorize it everywhere on the next run.
@@ -90,10 +93,10 @@ tracked:
   adding the new Mac's public key at https://github.com/settings/keys so it
   can reach your other machines, and bringing over `~/.ssh/config` by hand if
   there are hosts worth keeping.
-- **GPG keys** — export from the old Mac (`gpg --export-secret-keys --armor`)
-  and import on the new one. `pinentry-mac` is in the Brewfile.
-- **`gh` auth** — `gh auth login`. The gitconfig credential helper depends on
-  it. Re-run bootstrap afterwards to install `gh-signoff`, then
+- **`gh` auth** — `gh auth login`, then
+  `gh auth refresh -h github.com -s admin:ssh_signing_key`. The gitconfig
+  credential helper depends on it, and GitHub only marks commits Verified once
+  `ssh-setup.sh` has uploaded the key as a signing key. Re-run bootstrap afterwards to install `gh-signoff`, then
   `gh extension install github/gh-stack`.
 - **`~/.zshrc.local`** — bootstrap copies the example; fill in this machine's
   PATH entries and credential paths.
