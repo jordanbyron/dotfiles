@@ -40,9 +40,6 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-GPG_TTY=$(tty)
-export GPG_TTY
-
 export PATH="$HOME/.local/bin:$PATH"
 
 # Machine-specific config (PATH additions, secrets paths, etc.) lives in

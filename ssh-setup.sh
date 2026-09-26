@@ -63,6 +63,15 @@ else
   echo "couldn't fetch github.com/${GITHUB_USER}.keys — add keys to $AUTHORIZED by hand"
 fi
 
+step "Commit signing"
+# gitconfig signs with this key; allowed_signers lets `git log --show-signature`
+# verify our own commits locally.
+SIGNERS="$HOME/.ssh/allowed_signers"
+email="$(git config --get user.email)"
+pubkey="$(cut -d' ' -f1,2 "${KEY}.pub")"
+grep -qF "$pubkey" "$SIGNERS" 2>/dev/null || echo "$email $pubkey" >> "$SIGNERS"
+echo "signing with ${KEY}.pub"
+
 step "Remote Login"
 # sshd is only loaded while Remote Login is on.  (systemsetup can't be used to
 # check: without sudo it prints an error instead of the setting.)
@@ -76,4 +85,6 @@ fi
 step "This machine's public key"
 cat "${KEY}.pub"
 echo
-echo "Add it at https://github.com/settings/keys to authorize this Mac on your others."
+echo "Add it at https://github.com/settings/ssh/new twice: once as an"
+echo "Authentication Key (to reach your other Macs) and once as a Signing Key"
+echo "(so GitHub marks your commits Verified)."
