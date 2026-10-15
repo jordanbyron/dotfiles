@@ -80,6 +80,7 @@ brew "cliclick"             # scripted mouse/keyboard clicks
 brew "testdisk"
 
 # --- Casks ----------------------------------------------------------------
+cask "1password-cli"        # `op` command-line tool
 cask "blackhole-2ch"        # virtual audio device
 cask "db-browser-for-sqlite"
 cask "firefox"
