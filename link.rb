@@ -15,7 +15,8 @@ end
   `ln -nfs #{current_directory}/nvim/#{f} ~/.config/nvim/#{f}`
 end
 
-# Only the statusline is linked: Claude Code rewrites settings.json itself, so
-# that stays a per-machine copy of claude/settings.json.example.
-`mkdir -p ~/.claude`
+# Only the statusline and hooks are linked: Claude Code rewrites settings.json
+# itself, so that stays a per-machine copy of claude/settings.json.example.
+`mkdir -p ~/.claude/hooks`
 `ln -nfs #{current_directory}/claude/statusline.sh ~/.claude/statusline.sh`
+`ln -nfs #{current_directory}/claude/hooks/comment_checker.rb ~/.claude/hooks/comment_checker.rb`
